@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import weby.kiwi.domain.collection.dto.CollectPostDto;
 import weby.kiwi.domain.collection.dto.CollectionResDto;
 import weby.kiwi.domain.collection.entity.Collection;
 import weby.kiwi.domain.collection.service.CollectionService;

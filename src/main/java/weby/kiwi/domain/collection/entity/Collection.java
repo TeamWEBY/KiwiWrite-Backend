@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
-import weby.kiwi.domain.word.Word;
+import weby.kiwi.domain.word.entity.Word;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Getter
 @NoArgsConstructor

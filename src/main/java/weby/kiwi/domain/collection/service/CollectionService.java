@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
-import weby.kiwi.domain.collection.dto.CollectionResDto;
 import weby.kiwi.domain.collection.entity.Collection;
-import weby.kiwi.domain.collection.repository.CollectionRepository;
-import weby.kiwi.domain.word.Word;
+
 
 import javax.transaction.Transactional;
 import java.util.List;

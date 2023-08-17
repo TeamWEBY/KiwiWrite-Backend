@@ -1,19 +1,22 @@
 package weby.kiwi.domain.collection.dto;
 
-public class CollectUpdateResDto {
-    private int user_id;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import weby.kiwi.domain.word.entity.Word;
+
+import java.util.List;
+@Getter
+@NoArgsConstructor
+public class CollectionEntityUpdateDto {
     private int year;
     private int month;
+    private List<Word> wordList;
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getMonth() {
-        return month;
+    @Builder
+    public CollectionEntityUpdateDto(int year, int month, List<Word> wordList) {
+        this.year = year;
+        this.month = month;
+        this.wordList = wordList;
     }
 }

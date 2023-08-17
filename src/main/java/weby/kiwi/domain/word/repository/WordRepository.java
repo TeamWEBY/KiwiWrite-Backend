@@ -25,16 +25,26 @@ public class WordRepository {
         return em.find(Word.class, word_id);
     }
 
-    public List<Word> findAllByMonth(int month) {
+    public List<Word> findByDate(int month, int day) {
         TypedQuery<Word> query = em.createQuery(
-                "SELECT w FROM Word w WHERE w.month = :month",
+                "SELECT w FROM Word w WHERE w.month = :month AND w.day = :day",
                 Word.class
         );
         query.setParameter("month", month);
+        query.setParameter("day", day);
         return query.getResultList();
     }
 
     public Word findByWord(String word) {
         return em.find(Word.class, word);
     }
+
+//    public List<Word> findAllByMonth(int month) {
+//        TypedQuery<Word> query = em.createQuery(
+//                "SELECT w FROM Word w WHERE w.month = :month",
+//                Word.class
+//        );
+//        query.setParameter("month", month);
+//        return query.getResultList();
+//    }
 }

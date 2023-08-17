@@ -19,14 +19,18 @@ public class Word {
     @Column(name = "month", nullable = false)
     private int month;      //월 정보
 
+    @Column(name = "day", nullable = false)
+    private int day;      //일 정보
+
     @Column(name = "word", nullable = false)
     private String word;    //단어
 
-    public Word(int month, String word) {
-        if(!(month >= 1 && month <= 12) || word == null) {
+    public Word(int month, int day, String word) {
+        if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || word == null) {
             throw new IllegalArgumentException("필수 파라미터 입력 오류!");
         }
         setMonth(month);
+        setDay(day);
         setWord(word);
     }
     public int getWordId()
@@ -42,6 +46,16 @@ public class Word {
     public void setMonth(int month)
     {
         this.month = month;
+    }
+
+    public int getDay()
+    {
+        return this.day;
+    }
+
+    public void setDay(int day)
+    {
+        this.day = day;
     }
 
     public String getWord()

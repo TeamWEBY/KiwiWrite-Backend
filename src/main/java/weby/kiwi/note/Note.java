@@ -1,10 +1,8 @@
 package weby.kiwi.note;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import weby.kiwi.user.User;
+
+import javax.persistence.*;
 
 @Entity
 public class Note {
@@ -13,34 +11,15 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 50)
     private String title;
 
+    @Lob // 대용량 데이터를 저장할 때 사용
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    // 기본 생성자, Getter, Setter
-    // 해당 Note Entity의 필드에 접근하고 값을 설정하기 위해 사용함
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.EAGER) // 게시글과 유저의 관계는 ManyToOne의 관계
+    @JoinColumn(name = "user_id") // foreign 키의 컬럼명 설정
+    private User user;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }

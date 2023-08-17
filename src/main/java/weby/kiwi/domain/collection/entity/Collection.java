@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
-import weby.kiwi.domain.word.Word;
+import weby.kiwi.domain.word.entity.Word;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Getter
 @NoArgsConstructor
@@ -26,26 +28,21 @@ public class Collection {
     private List<Word> word = new ArrayList<>();
 
     @Column(nullable = true)
-    private int year;
-
-    @Column(nullable = true)
     private int month;
 
     @Column(nullable = true)
     private int word_cnt;
 
     @Builder
-    public Collection(int user_id, List<Word> word, int year, int month, int word_cnt) {
+    public Collection(int user_id, List<Word> word, int month, int word_cnt) {
         this.user_id = user_id;
         this.word = word;
-        this.year = year;
         this.month = month;
         this.word_cnt = word_cnt;
     }
 
     @PrePersist
     public void prePersist() {
-        this.year = 0;
         this.month = 0;
         this.word_cnt = 0;
     }
@@ -58,10 +55,6 @@ public class Collection {
         return word;
     }
 
-    public int getYear() {
-        return year;
-    }
-
     public int getMonth() {
         return month;
     }
@@ -69,16 +62,15 @@ public class Collection {
     public void updateCollection(CollectionEntityUpdateDto dto) {
         this.word.clear();
         this.word.addAll(dto.getWordList());
-        this.year = dto.getYear();
         this.month = dto.getMonth();
     }
 
-    public void setYearMonth(int year, int month) {
-        this.year = year;
+    public void setMonth(int month) {
         this.month = month;
     }
 
     public void addWordCnt(){
         this.word_cnt++;
     }
+    public void subWordCnt(){this.word_cnt--;}
 }

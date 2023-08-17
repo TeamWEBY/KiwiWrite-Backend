@@ -1,6 +1,7 @@
 package weby.kiwi.note;
 
 public class NoteRequest {
+    private Long userId;
     private String title;
     private String content;
 
@@ -24,4 +25,6 @@ public class NoteRequest {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public Long getUserId() { return userId; }
 }

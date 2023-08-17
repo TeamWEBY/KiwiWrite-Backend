@@ -12,5 +12,8 @@ public class User {
     @Column(nullable = false, length = 50)
     private String username;
 
+    @Column
+    private String email;
+
     // Getter, Setter, Constructors, etc.
 }

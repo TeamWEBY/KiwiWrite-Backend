@@ -23,8 +23,13 @@ public class Note {
     private User user;
 
     public void setTitle(String title) {
+        
     }
 
     public void setContent(String content) {
     }
+
+    public void setUser(User user) {
+    }
+
 }

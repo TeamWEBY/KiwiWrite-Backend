@@ -22,4 +22,9 @@ public class Note {
     @JoinColumn(name = "user_id") // foreign 키의 컬럼명 설정
     private User user;
 
+    public void setTitle(String title) {
+    }
+
+    public void setContent(String content) {
+    }
 }

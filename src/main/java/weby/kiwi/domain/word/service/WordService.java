@@ -1,5 +1,7 @@
 package weby.kiwi.domain.word.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import weby.kiwi.domain.word.entity.Word;
@@ -13,23 +15,18 @@ public class WordService {
 
     private final WordRepository wordRepository;
 
-    public WordService() {
-        this.wordRepository = setWords();
-    }
-
     public WordService(WordRepository wordRepository) {
         this.wordRepository = wordRepository;
-//        this.wordMapper = wordMapper;
+        setWords();
     }
 
-    public WordRepository setWords() {
-        this.wordRepository.save(new Word(8, 1, "여름"));
-        this.wordRepository.save(new Word(8, 1, "불꽃"));
-        this.wordRepository.save(new Word(8, 2, "밤"));
-        this.wordRepository.save(new Word(8, 2, "약속"));
-        this.wordRepository.save(new Word(8, 3, "풀"));
-        this.wordRepository.save(new Word(8, 3, "소리"));
-        return this.wordRepository;
+    private void setWords() {
+        wordRepository.save(new Word(8, 1, "여름"));
+        wordRepository.save(new Word(8, 1, "불꽃"));
+        wordRepository.save(new Word(8, 2, "밤"));
+        wordRepository.save(new Word(8, 2, "약속"));
+        wordRepository.save(new Word(8, 3, "풀"));
+        wordRepository.save(new Word(8, 3, "소리"));
     }
 
     @Transactional(readOnly = true)

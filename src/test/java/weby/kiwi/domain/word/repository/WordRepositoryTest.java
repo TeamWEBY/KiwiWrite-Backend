@@ -2,22 +2,26 @@ package weby.kiwi.domain.word.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 import weby.kiwi.domain.word.entity.Word;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //Test 오류 해결 위해 추가해봄
 public class WordRepositoryTest {
 
     @Autowired
     private WordRepository wordRepository;
 
     @Test
-    public void testSaveWord() {
+    public void testSaveAndFindById() {
         Word word = new Word(8, 1, "여름");
         wordRepository.save(word);
 
@@ -27,7 +31,7 @@ public class WordRepositoryTest {
     }
 
     @Test
-    public void testDeleteWord() {
+    public void testDelete() {
         Word word = new Word(8, 1, "불꽃");
         wordRepository.save(word);
 
@@ -35,16 +39,6 @@ public class WordRepositoryTest {
 
         Optional<Word> deletedWord = wordRepository.findByWordId(word.getWordId());
         assertFalse(deletedWord.isPresent());
-    }
-
-    @Test
-    public void testFindByWordId() {
-        Word word = new Word(8, 1, "밤");
-        wordRepository.save(word);
-
-        Optional<Word> foundWord = wordRepository.findByWordId(word.getWordId());
-        assertTrue(foundWord.isPresent());
-        assertEquals("밤", foundWord.get().getWordName());
     }
 
     @Test
@@ -67,5 +61,11 @@ public class WordRepositoryTest {
         Optional<Word> foundWord = wordRepository.findByWordName("풀");
         assertTrue(foundWord.isPresent());
         assertEquals("풀", foundWord.get().getWordName());
+    }
+
+    @Test
+    public void testFindByNonExistingWordName() {
+        Optional<Word> foundWord = wordRepository.findByWordName("없는단어");
+        assertFalse(foundWord.isPresent());
     }
 }

@@ -1,7 +1,5 @@
 package weby.kiwi.domain.word.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import weby.kiwi.domain.word.entity.Word;
@@ -17,7 +15,8 @@ public class WordService {
 
     public WordService(WordRepository wordRepository) {
         this.wordRepository = wordRepository;
-        setWords();
+        if(this.wordRepository.findAll().isEmpty())
+            setWords();
     }
 
     private void setWords() {

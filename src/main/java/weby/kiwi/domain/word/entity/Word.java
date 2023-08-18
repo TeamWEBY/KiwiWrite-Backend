@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 public class Word {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "word_id", nullable = false)
     private Long wordId;    //단어번호
 

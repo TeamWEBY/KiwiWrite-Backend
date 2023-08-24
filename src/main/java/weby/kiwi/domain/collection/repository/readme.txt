@@ -1,3 +1,5 @@
-repository
-DB 저장소에 접근하는 영역.
-예를들어, DBMS 테이블에서 엔티티 객체를 로딩하거나 저장하는 기능을 제공한다
+Collection Repository
+
+Boolean existsByCollectionAndWord(Collection collection, Word word);
+Collection findByUserIdAndMonth(long userId, int month);
+List<Word> findWordList(Collection collection);

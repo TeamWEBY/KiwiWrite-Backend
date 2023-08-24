@@ -1,4 +1,4 @@
-package weby.kiwi.note;
+package weby.kiwi.domain.note;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

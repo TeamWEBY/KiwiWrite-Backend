@@ -7,14 +7,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "words")
 @NoArgsConstructor
 @Getter
 @Setter
 public class Word {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "word_id", nullable = false)
-    private int word_id;    //단어번호
+    private Long wordId;    //단어번호
 
     @Column(name = "month", nullable = false)
     private int month;      //월 정보
@@ -22,20 +23,20 @@ public class Word {
     @Column(name = "day", nullable = false)
     private int day;      //일 정보
 
-    @Column(name = "word", nullable = false)
-    private String word;    //단어
+    @Column(name = "word_name", nullable = false)
+    private String wordName;    //단어
 
-    public Word(int month, int day, String word) {
-        if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || word == null) {
+    public Word(int month, int day, String wordName) {
+        if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || wordName == null) {
             throw new IllegalArgumentException("필수 파라미터 입력 오류!");
         }
         setMonth(month);
         setDay(day);
-        setWord(word);
+        setWordName(wordName);
     }
-    public int getWordId()
+    public Long getWordId()
     {
-        return this.word_id;
+        return this.wordId;
     }
 
     public int getMonth()
@@ -58,13 +59,13 @@ public class Word {
         this.day = day;
     }
 
-    public String getWord()
+    public String getWordName()
     {
-        return this.word;
+        return this.wordName;
     }
 
-    public void setWord(String word)
+    public void setWordName(String wordName)
     {
-        this.word = word;
+        this.wordName = wordName;
     }
 }

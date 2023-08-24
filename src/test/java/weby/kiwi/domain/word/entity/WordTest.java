@@ -9,16 +9,18 @@ public class WordTest {
 
     @Test
     public void testCreateWord() {
+        // Arrange
         int month = 8;
         int day = 1;
-        String word = "여름";
+        String wordName = "여름";
 
-        //Act
-        Word newWord = new Word(month, day, word);
+        // Act
+        Word newWord = new Word(month, day, wordName);
 
+        // Assert
         assertEquals(month, newWord.getMonth());
         assertEquals(day, newWord.getDay());
-        assertEquals(word, newWord.getWord());
+        assertEquals(wordName, newWord.getWordName());
     }
 
     @Test

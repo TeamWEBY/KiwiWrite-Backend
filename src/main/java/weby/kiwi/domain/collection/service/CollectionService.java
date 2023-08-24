@@ -5,16 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
 import weby.kiwi.domain.collection.entity.Collection;
+import weby.kiwi.domain.collection.repository.CollectionRepository;
+import weby.kiwi.domain.word.entity.Word;
+import weby.kiwi.domain.word.repository.WordRepository;
 
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-@Transactional
 public class CollectionService {
     public final CollectionRepository collectionRepository;
+    public final WordRepository wordRepository;
 
     @Autowired
     public CollectionService(CollectionRepository collectionRepository) {
@@ -23,8 +25,8 @@ public class CollectionService {
 
     //월별 collection 검색
     @Transactional
-    public Collection findByUserIdAndMonth(int user_id, int year, int month){
-        return collectionRepository.findByUserIdAndMonth(user_id, year, month);
+    public Collection findByUserIdAndMonth(int user_id, int month){
+        return collectionRepository.findByUserIdAndMonth(user_id, month);
     }
     //save: 새로운 텐티티 생성 및 저장
 

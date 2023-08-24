@@ -50,8 +50,8 @@ public class NoteService {
         Word firstWord = words.get(0);
         Word secondWord = words.get(1);
 
-        note.setFirstWord(firstWord.getWordId());
-        note.setSecondWord(secondWord.getWordId());
+        note.setFirstWord(firstWord);
+        note.setSecondWord(secondWord);
 
         // Note를 DB에 저장
         return noteRepository.save(note);

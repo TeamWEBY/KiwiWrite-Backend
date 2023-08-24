@@ -30,8 +30,12 @@ public class Word {
     private String wordName;    //단어
 
     //(FK) Note와의 연관관계 매핑
-    @OneToMany(mappedBy = "word_id")
-    private List<Note> notes = new ArrayList<>();
+    @OneToMany(mappedBy = "firstWord") //""안에는 필드이름
+    private List<Note> firstWordNotes = new ArrayList<>();
+
+    //(FK) Note와의 연관관계 매핑
+    @OneToMany(mappedBy = "secondWord")
+    private List<Note> secondWordNotes = new ArrayList<>();
 
     public Word(int month, int day, String wordName) {
         if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || wordName == null) {

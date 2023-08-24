@@ -1,48 +1,75 @@
 package weby.kiwi.domain.note;
 
+import lombok.Getter;
+import weby.kiwi.domain.word.entity.Word;
+import weby.kiwi.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "notes")
 public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "note_id")
     private Long id;
 
+    @Column(name = "title", nullable = false, length = 50)
     private String title;
 
+    @Lob // 대용량 데이터를 저장할 때 사용
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    // 기본 생성자, Getter, Setter
-    // 해당 Note Entity의 필드에 접근하고 값을 설정하기 위해 사용함
-    public Long getId() {
-        return id;
+    @Column(name = "visible")
+    private boolean visible;
+
+    //Note와 Word는 서로 다대일 관계이다 (하나의 단어쌍에 여러개 글 존재할 수 있. 단어가 2개인데 다대다 관계는 지양해야 하므로 이렇게 분리해봄)
+    //Note에 추가해야 하는, 단어랑 노트 연결부분 (fk)
+    @ManyToOne
+    @JoinColumn(name = "first_word_id") // first word와의 관계를 나타내는 외래 키 컬럼(fk)
+    private Long firstWord_id;
+
+    @ManyToOne
+    @JoinColumn(name = "second_word_id") // second word와의 관계를 나타내는 외래 키 컬럼(fk)
+    private Long secondWord_id;
+
+    @ManyToOne(fetch = FetchType.EAGER) // 게시글과 유저의 관계는 ManyToOne의 관계
+    @JoinColumn(name = "user_id") // foreign 키의 컬럼명 설정
+    private User user;
+
+    // Getter, Setter
+
+    public void setTitle(String title) { this.title = title;}
+
+    public void setContent(String content) { this.content = content;}
+
+    public void setUser(User user) { this.user = user;}
+
+    public void setVisible(Boolean visible) { this.visible = visible;}
+
+    // Note 클래스에 setFirstWord()와 setSecondWord() 메서드 추가
+    public void setFirstWord(Long firstWord) {
+        this.firstWord_id = firstWord;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSecondWord(Long secondWord) {
+        this.secondWord_id = secondWord;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public User getUser() { return user; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public String getTitle() { return title; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public Long getId() { return id; }
+
+    public boolean getVisible() { return visible;}
+
+    public Long getFirstWord() { return firstWord_id; }
+
+    public Long getSecondWord() { return secondWord_id; }
+
 }
-

@@ -55,7 +55,7 @@ public class CollectionService {
 
         //Find the Word entity by word_id
         Word after_word = wordRepository.findById(after_id);
-        Word before_word = collectionRepository
+        Word before_word = collectionRepository;
         int index =collection.getWord().indexOf(before_id);
     }
     //collection 단어 삭제

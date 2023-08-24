@@ -3,8 +3,11 @@ package weby.kiwi.domain.word.entity;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import weby.kiwi.domain.note.Note;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "words")
@@ -25,6 +28,10 @@ public class Word {
 
     @Column(name = "word_name", nullable = false)
     private String wordName;    //단어
+
+    //(FK) Note와의 연관관계 매핑
+    @OneToMany(mappedBy = "word_id")
+    private List<Note> notes = new ArrayList<>();
 
     public Word(int month, int day, String wordName) {
         if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || wordName == null) {

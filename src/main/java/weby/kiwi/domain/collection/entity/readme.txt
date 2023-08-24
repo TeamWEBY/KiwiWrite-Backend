@@ -1,9 +1,11 @@
-ENTITY
-고유의 식별자를 갖는 객체로 자신의 라이프 사이클을 갖는다.
-주문, 회원, 상품과 같이 도메인의 고유한 개념을 표현한다.
-도메인 모델의 데이터를 포함하며 해당 데이터와 관련된 기능을 함께 제공한다.
-DB와 맞닿은 핵심 클래스이기 때문에 이를 Req,Res 클래스로 사용하면 안된다.
+Collection Entity
 
+[PK,FK]
+long userId
 
-collection의 entity Collection
--
+[FK]
+List<Word> word
+
+[]
+int month
+int wordCnt

@@ -19,11 +19,11 @@ import java.util.List;
 public class Collection {
     @Id
 
-    @Column(name = "user_id", nullable = false)
-    private int user_id; //GeneratedValue로 pk생성 옵션
-    @MapsId("user_id") //fk를 pk로
+    @Column(name = "userId", nullable = false)
+    private long userId;
+    @MapsId("userId")
 
-    @OneToMany(mappedBy = "Collection")//한개의 collection에는  @GeneratedValue여러개의 단어가 연결될 수 있음
+    @OneToMany(mappedBy = "Collection")
     @Column(nullable = true)
     private List<Word> word = new ArrayList<>();
 
@@ -31,24 +31,25 @@ public class Collection {
     private int month;
 
     @Column(nullable = true)
-    private int word_cnt;
+    private int wordCnt;
 
     @Builder
-    public Collection(int user_id, List<Word> word, int month, int word_cnt) {
-        this.user_id = user_id;
+    public Collection(long userId, List<Word> word, int month, int wordCnt) {
+        this.userId = userId;
         this.word = word;
         this.month = month;
-        this.word_cnt = word_cnt;
+        this.wordCnt = wordCnt;
     }
 
     @PrePersist
     public void prePersist() {
         this.month = 0;
-        this.word_cnt = 0;
+        this.word = null;
+        this.wordCnt = 0;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public long getUser_id() {
+        return userId;
     }
 
     public List<Word> getWord() {
@@ -59,18 +60,21 @@ public class Collection {
         return month;
     }
 
-    public void updateCollection(CollectionEntityUpdateDto dto) {
-        this.word.clear();
-        this.word.addAll(dto.getWordList());
-        this.month = dto.getMonth();
-    }
-
     public void setMonth(int month) {
         this.month = month;
     }
 
-    public void addWordCnt(){
-        this.word_cnt++;
+    public void setWordCnt(int wordCnt) {
+        this.wordCnt = wordCnt;
     }
-    public void subWordCnt(){this.word_cnt--;}
+
+    public void updateCollection(CollectionEntityUpdateDto dto) {
+        this.word.clear();
+        this.word.addAll(dto.getWordList());
+        this.wordCnt=this.word.size();
+        this.month = dto.getMonth();
+    }
+    public void addWordCnt() {
+        this.wordCnt++;
+    }
 }

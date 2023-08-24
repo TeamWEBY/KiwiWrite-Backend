@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import weby.kiwi.domain.word.entity.Word;
 
 import java.util.List;
+
 @Getter
 @NoArgsConstructor
 public class CollectionEntityUpdateDto {

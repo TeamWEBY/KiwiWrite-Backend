@@ -15,7 +15,7 @@ public class WordService {
 
     public WordService(WordRepository wordRepository) {
         this.wordRepository = wordRepository;
-        if(this.wordRepository.findAll().isEmpty())
+        if (this.wordRepository.findAll().isEmpty())
             setWords();
     }
 

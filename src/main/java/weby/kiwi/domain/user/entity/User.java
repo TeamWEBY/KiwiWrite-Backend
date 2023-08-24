@@ -36,6 +36,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Note> notes = new ArrayList<>();
 
+    public User(String userName, String email, String passwd) {
+        if (userName == null || email == null || passwd == null) {
+            throw new IllegalArgumentException("User의 필수 파라미터 입력 오류!");
+//        } else if (isValidEmail(email)) {
+//            throw new IllegalArgumentException("User의 필수 파라미터 입력 오류!");
+            //email형식이 올바른지 등도 체크해야 함
+        }
+        setUserName(userName);
+        setEmail(email);
+        setPasswd(passwd);
+    }
+
     public Long getUserId() {
         return userId;
     }

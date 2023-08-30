@@ -2,7 +2,6 @@ package weby.kiwi.domain.collection.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
 import weby.kiwi.domain.collection.dto.CollectionMapper;
 import weby.kiwi.domain.collection.dto.CollectionReqDto;
 import weby.kiwi.domain.collection.entity.Collection;
@@ -13,8 +12,8 @@ import weby.kiwi.domain.word.repository.WordRepository;
 
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class CollectionService {
@@ -29,67 +28,34 @@ public class CollectionService {
     }
 
 
+    //컬렉션 단어 exists
     @Transactional
-    public Optional<Collection> findByUserIdAndMonth(CollectionReqDto dto) {
-        Optional<Collection> optionalCollection = collectionRepository.findByUserIdAndMonth(dto.getUserId(), dto.getMonth());
-        if (!optionalCollection.isPresent()) {
-            throw new CollectionNotFoundException("Collection not found for user " + dto.getUserId() + " and month " + dto.getMonth());
-        }
-        return optionalCollection;
+    public Boolean existsByUserIdAndWordId(long userId, Word word) {
+        return collectionRepository.existsByUserIdAndWord(userId, word);
     }
-
-
-    @Transactional
-    public Boolean existsByCollectionAndWord(Collection collection, Word word) {
-        return collectionRepository.existsByCollectionAndWord(collection, word);
+    //find collection
+    public Optional<Collection> getCollectionByUserIdAndMonth(long userId, int month) {
+        return collectionRepository.findByUserIdAndMonth(userId, month);
     }
-
+    //월별 엔티티 개수
     @Transactional
-    public List<Word> findWordList(Collection collection) {
-        return collectionRepository.findWordList(collection);
+    public long getCountByUserIdAndMonth(long userId, int month) {
+        return collectionRepository.countByUserIdAndMonth(userId, month);
     }
-
-    //create: 새로운 텐티티 생성
+    //새로운 텐티티 생성
     @Transactional
-    public Collection createCollection(long userId, int month) {
+    public Collection createCollection(long collectionId,long userId, Word word, int month) {
         Collection collection = Collection.builder()
+                .collectionId(collectionId)
                 .userId(userId)
-                .word(null)
+                .word(word)
                 .month(month)
-                .wordCnt(0)
                 .build();
         return collectionRepository.save(collection);
     }
-
-    //update: 엔티티 수정
-    @Transactional
-    public void updateCollection(CollectionReqDto reqDto,
-                                 CollectionEntityUpdateDto updateDto) {
-        Optional<Collection> optionalCollection = findByUserIdAndMonth(reqDto);
-        optionalCollection.ifPresent(collection -> {
-            collectionMapper.updateCollectionFromUpdateDto(updateDto, collection);
-            collectionRepository.save(collection);
-        });
-    }
-
     //엔티티 삭제
     @Transactional
-    public void deleteCollection(CollectionReqDto dto) {
-        Optional<Collection> optionalCollection = findByUserIdAndMonth(dto);
-        optionalCollection.ifPresent(collection -> collectionRepository.delete(collection));
-    }
-
-
-    @Transactional
-    public void addWordInCollection(Collection collection, Word word) {
-        collection.getWord().add(word);
-        collection.addWordCnt();
-        collectionRepository.save(collection);
-    }
-
-    @Transactional
-    public void deleteWordInCollection(Collection collection, Word word) {
-        collection.getWord().remove(word);
-        collectionRepository.save(collection);
+    public void deleteCollectionById(long collectionId) {
+        collectionRepository.deleteById(collectionId);
     }
 }

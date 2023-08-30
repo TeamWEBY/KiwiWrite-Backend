@@ -4,9 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
 import weby.kiwi.domain.word.entity.Word;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,45 +13,49 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "Collection")
+@Entity(name = "collection")
 public class Collection {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "col_id", nullable = false)
+    private long collectionId;
 
-    @Column(name = "userId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private long userId;
-    @MapsId("userId")
 
-    @OneToMany(mappedBy = "Collection")
-    @Column(nullable = true)
-    private List<Word> word = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)  // 다대일 관계 설정
+    @JoinColumn(name = "word_id")       // 외래 키 매핑
+    private Word word;  // Word 엔티티와의 관계
 
-    @Column(nullable = true)
+    @Column(name = "month", nullable = false)
     private int month;
 
-    @Column(nullable = true)
-    private int wordCnt;
-
     @Builder
-    public Collection(long userId, List<Word> word, int month, int wordCnt) {
+    public Collection(long collectionId, long userId,  Word word, int month) {
+        this.collectionId = collectionId;
         this.userId = userId;
         this.word = word;
         this.month = month;
-        this.wordCnt = wordCnt;
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.month = 0;
-        this.word = null;
-        this.wordCnt = 0;
+    public long getCollectionId() {
+        return collectionId;
     }
 
-    public long getUser_id() {
+    public long getUserId() {
         return userId;
     }
 
-    public List<Word> getWord() {
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Word getWord() {
         return word;
+    }
+
+    public void setWord(Word word) {
+        this.word = word;
     }
 
     public int getMonth() {
@@ -62,19 +64,5 @@ public class Collection {
 
     public void setMonth(int month) {
         this.month = month;
-    }
-
-    public void setWordCnt(int wordCnt) {
-        this.wordCnt = wordCnt;
-    }
-
-    public void updateCollection(CollectionEntityUpdateDto dto) {
-        this.word.clear();
-        this.word.addAll(dto.getWordList());
-        this.wordCnt=this.word.size();
-        this.month = dto.getMonth();
-    }
-    public void addWordCnt() {
-        this.wordCnt++;
     }
 }

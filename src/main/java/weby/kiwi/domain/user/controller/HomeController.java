@@ -11,23 +11,13 @@ import weby.kiwi.domain.user.service.UserService;
 public class HomeController {
     private final UserService userService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "home/login";
-    }
-
-    @GetMapping("/signup")
-    public String signUp() {
-        return "home/signup";
-    }
-
-    @PostMapping("/signup")
-    public String createAccount(@ModelAttribute User user) {
-        userService.signUp(user); //여기를 어떻게할까
-        return "home/signupsuccess";
-    }
+//    @PostMapping("/login")
+//    public String createAccount(@ModelAttribute User user) {
+//        userService.createUser(user); //여기를 어떻게할까
+//        return "home/signupsuccess";
+//    }
     //reqDto에 대한 공부가 필요
 //    public String home() {
 //        return "home";
-//    }
+//  }
 }

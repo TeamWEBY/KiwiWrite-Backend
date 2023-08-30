@@ -2,6 +2,7 @@ package weby.kiwi.domain.user.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import weby.kiwi.domain.user.dto.SignupReqDto;
 import weby.kiwi.domain.user.entity.User;
 import weby.kiwi.domain.user.exception.UserNotFoundException;
 import weby.kiwi.domain.user.repository.UserRepository;
@@ -10,6 +11,12 @@ import weby.kiwi.domain.user.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    public Long createUser(SignupReqDto reqDto) {
+        User user = reqDto.toEntity();
+        userRepository.save(user);
+        return user.getUserId();
+    }
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;

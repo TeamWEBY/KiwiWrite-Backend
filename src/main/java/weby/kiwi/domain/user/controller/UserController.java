@@ -31,18 +31,18 @@ public class UserController {
     }
 
 //    //메소드 https://maenco.tistory.com/entry/Spring-MVC-Request-Mapping-%EA%B3%BC-REST-API-%EC%84%A4%EA%B3%84
-//    @GetMapping("/login")
-//    public String login() {
-//        return "user login data";
-//    }
-//
-//    @GetMapping("/logincheck")
-//    public String loginCheck() {
-//        return "user login check data";
-//    }
-//
-//    @GetMapping("/logout")
-//    public String logout() {
-//        return "user logout data";
-//    }
+    @GetMapping("/login")
+    public String login() {
+        return "user login data";
+    }
+
+    @GetMapping("/logincheck")
+    public String loginCheck() {
+        return "user login check data";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "user logout data";
+    }
 }

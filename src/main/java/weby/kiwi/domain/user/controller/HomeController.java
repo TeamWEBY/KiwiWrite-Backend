@@ -2,7 +2,6 @@ package weby.kiwi.domain.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import weby.kiwi.domain.user.entity.User;
 import weby.kiwi.domain.user.service.UserService;
 
 @RestController //https://7942yongdae.tistory.com/136

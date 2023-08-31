@@ -16,7 +16,7 @@ public class HomeController {
 //        userService.createUser(user); //여기를 어떻게할까
 //        return "home/signupsuccess";
 //    }
-    //reqDto에 대한 공부가 필요
+
 //    public String home() {
 //        return "home";
 //  }

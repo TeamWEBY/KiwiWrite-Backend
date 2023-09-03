@@ -1,14 +1,14 @@
 package weby.kiwi.domain.collection.dto;
 
 public class CollectionReqDto {
-    private long userId;
+    private Long userId;
     private int month;
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

@@ -11,7 +11,8 @@ import java.util.Optional;
 @Repository
 public interface CollectionRepository extends JpaRepository<Collection, Long> {
     //JpaRepository 기본CRUD메서드 자동 생성
-    Boolean existsByUserIdAndWord(long userId, Word word);
+    Boolean existsByUserIdAndWord(Long userId, Word word);
+    Collection findByUserIdAndWord(Long userId, Word word);
     List<Collection> findAllByUserIdAndMonth(Long userId, int month);
-    long countByUserIdAndMonth(long userId, int month);
+    long countByUserIdAndMonth(Long userId, int month);
 }

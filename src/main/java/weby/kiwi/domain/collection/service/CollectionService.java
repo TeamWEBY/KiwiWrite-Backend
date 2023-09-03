@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class CollectionService {
     public final CollectionRepository collectionRepository;
     public final WordRepository wordRepository;
-    private final CollectionMapper collectionMapper;
+    public final CollectionMapper collectionMapper;
 
     @Autowired
     public CollectionService(CollectionRepository collectionRepository, WordRepository wordRepository, CollectionMapper collectionMapper) {
@@ -42,17 +42,8 @@ public class CollectionService {
     public List<CollectionResDto> findCollectionByUserIdAndMonth(Long userId, int month) {
         List<Collection> collections = collectionRepository.findAllByUserIdAndMonth(userId, month);
         return collections.stream()
-                .map(this::mapToResDto)
+                .map(collectionMapper::toResDto)
                 .collect(Collectors.toList());
-    }
-
-    private CollectionResDto mapToResDto(Collection collection) {
-        CollectionResDto dto = new CollectionResDto();
-        dto.setCollectionId(collection.getCollectionId());
-        dto.setUserId(collection.getUserId());
-        dto.setWordName(collection.getWord().getWordName());
-        dto.setMonth(collection.getMonth());
-        return dto;
     }
 
     //월별 엔티티 개수
@@ -62,7 +53,6 @@ public class CollectionService {
     }
 
     //collection의 Id조회
-
     @Transactional
     public Optional<Collection> findByUserIdAndWord(Long userId, Word word){
         if(!collectionRepository.existsByUserIdAndWord(userId,word)){

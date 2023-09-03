@@ -1,10 +1,37 @@
 package weby.kiwi.domain.collection.dto;
-import weby.kiwi.domain.word.entity.Word;
-import java.util.List;
+
 public class CollectionResDto {
+
+    private Long collectionId;
+    private Long userId;
+    private String wordName;
     private int month;
-    private List<Word> wordList;
-    private int wordCnt;
+
+    // Getter, Setter, Constructor
+
+    public Long getCollectionId() {
+        return collectionId;
+    }
+
+    public void setCollectionId(Long collectionId) {
+        this.collectionId = collectionId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getWordName() {
+        return wordName;
+    }
+
+    public void setWordName(String wordName) {
+        this.wordName = wordName;
+    }
 
     public int getMonth() {
         return month;
@@ -12,21 +39,5 @@ public class CollectionResDto {
 
     public void setMonth(int month) {
         this.month = month;
-    }
-
-    public List<Word> getWordList() {
-        return wordList;
-    }
-
-    public void setWordList(List<Word> wordList) {
-        this.wordList = wordList;
-    }
-
-    public int getWordCnt() {
-        return wordCnt;
-    }
-
-    public void setWordCnt(int wordCnt) {
-        this.wordCnt = wordCnt;
     }
 }

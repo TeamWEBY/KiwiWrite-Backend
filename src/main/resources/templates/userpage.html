@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header"></head>
+<head th:replace="fragments/header :: header"><meta charset = "utf-8"></head>
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
@@ -10,15 +10,19 @@
 
         <div class="form-group">
             <label th:for="userName">이름</label>
-            <input type="text" th:field="*{userName}" class="form-control" placeholder="이름 입력해주세요">
+            <input type="text" th:field="*{userName}" class="form-control" placeholder="이름을 입력해주세요">
         </div>
         <div class="form-group">
-            <label th:for="passwd">비밀번호</label>
-            <input type="password" class="form-control" th:field="*{passwd}" placeholder="비밀번호">
+            <label th:for="passwd1">비밀번호</label>
+            <input type="password" class="form-control" th:field="*{passwd1}" placeholder="비밀번호를 입력해주세요">
+        </div>
+        <div class="form-group">
+            <label th:for="passwd2">비밀번호확인</label>
+            <input type="password" class="form-control" th:field="*{passwd2}" placeholder="비밀번호를 다시 입력해주세요">
         </div>
         <div class="form-group">
             <label th:for="email">이메일</label>
-            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일 입력해주세요">
+            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력해주세요">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

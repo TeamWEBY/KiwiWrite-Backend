@@ -1,28 +1,33 @@
 package weby.kiwi.domain.user.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import weby.kiwi.domain.user.dto.SignupReqDto;
 import weby.kiwi.domain.user.entity.User;
 import weby.kiwi.domain.user.exception.UserNotFoundException;
 import weby.kiwi.domain.user.repository.UserRepository;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public Long createUser(SignupReqDto reqDto) {
-        User user = reqDto.toEntity();
-        userRepository.save(user);
-        return user.getUserId();
+    public User createUser(String userName, String email, String passwd) {
+        User user = new  User();
+        user.setUserName(userName);
+        user.setEmail(email);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPasswd(passwordEncoder.encode(passwd));
+        this.userRepository.save(user);
+        return user;
     }
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-        if (this.userRepository.findAll().isEmpty())
-            userRepository.save(new User("TestUser", "abc@gmail.com", "qwer"));
-    }
+//    public Long createUser(SignupReqDto reqDto) {
+//        User user = reqDto.toEntity();
+//        userRepository.save(user);
+//        return user.getUserId();
+//    }
 
     @Transactional(readOnly = true)
     public User findByUserId(Long userId) {

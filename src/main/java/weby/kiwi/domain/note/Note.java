@@ -1,5 +1,6 @@
 package weby.kiwi.domain.note;
 
+import lombok.Builder;
 import lombok.Getter;
 import weby.kiwi.domain.word.entity.Word;
 import weby.kiwi.user.User;
@@ -38,6 +39,7 @@ public class Note {
     @ManyToOne(fetch = FetchType.EAGER) // 게시글과 유저의 관계는 ManyToOne의 관계
     @JoinColumn(name = "user_id") // foreign 키의 컬럼명 설정
     private User user;
+
 
     // Getter, Setter
 

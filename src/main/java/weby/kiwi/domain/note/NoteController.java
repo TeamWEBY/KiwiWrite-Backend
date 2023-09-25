@@ -12,13 +12,13 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
-    @PostMapping
+    @PostMapping("/note")
     public ResponseEntity<String> createNote(@RequestBody NoteRequest noteRequest) {
         Note note = noteService.createNote(noteRequest.getUserId(), noteRequest.getTitle(), noteRequest.getContent());
         return ResponseEntity.ok("글이 업로드 되었습니다");
     }
 
-    @GetMapping("/note/save")
+    @GetMapping("/note")
     public String save() {
         return "글을 저장했습니다"; // 사용자에게 보여줄 내용
     }

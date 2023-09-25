@@ -2,7 +2,7 @@ package weby.kiwi.domain.note;
 
 import lombok.Getter;
 import weby.kiwi.domain.word.entity.Word;
-import weby.kiwi.user.User;
+import weby.kiwi.domain.user.entity.User;
 
 import javax.persistence.*;
 

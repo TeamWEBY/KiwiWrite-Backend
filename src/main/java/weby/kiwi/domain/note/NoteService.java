@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import weby.kiwi.domain.word.entity.Word;
 import weby.kiwi.domain.word.repository.WordRepository;
-import weby.kiwi.user.User;
-import weby.kiwi.user.UserRepository;
+import weby.kiwi.domain.user.entity.User;
+import weby.kiwi.domain.user.repository.UserRepository;
 
 import java.util.List;
 

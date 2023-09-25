@@ -56,12 +56,12 @@ CREATE TABLE likes (
 
 -- 6. collections table
 CREATE TABLE collections (
-                             user_id INT,
-                             word_id INT,
-                             word_cnt INT,
+                             col_id INT PRIMARY KEY,
+                             user_id INT NOT NULL,
+                             word_id INT NOT NULL,
+                             month INT NOT NULL,
                              FOREIGN KEY (user_id) REFERENCES users (user_id),
-                             FOREIGN KEY (word_id) REFERENCES words (word_id),
-                             PRIMARY KEY (user_id, word_id)
+                             FOREIGN KEY (word_id) REFERENCES words (word_id)
 );
 
 -- 7. neighbors table

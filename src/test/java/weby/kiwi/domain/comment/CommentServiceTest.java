@@ -53,7 +53,7 @@ public class CommentServiceTest {
         noteRepository.save(note);
 
         Comment comment = new Comment();
-        comment.setUserId(user.getId());
+        comment.setUserId(user.getUserId());
         comment.setNote(note);
         comment.setContent("Test Content");
 
@@ -62,7 +62,7 @@ public class CommentServiceTest {
         Comment retrievedComment = (Comment) commentRepository.findByNote(note);
 
         assertNotNull(retrievedComment);
-        assertEquals(user.getId(), retrievedComment.getUser().getId());
+        assertEquals(user.getUserId(), retrievedComment.getUser().getUserId());
         assertEquals(note.getId(), retrievedComment.getNote().getId());
         assertEquals("Test Content", retrievedComment.getContent());
     }
@@ -96,7 +96,7 @@ public class CommentServiceTest {
         // Perform assertions
         assertNotNull(comments);
         assertEquals(1, comments.size());
-        assertEquals(comment.findAll(), comments.get(0).getId());
+        assertEquals(comment.getCommentId(), comments.get(0).getCommentId());
     }
 
 }

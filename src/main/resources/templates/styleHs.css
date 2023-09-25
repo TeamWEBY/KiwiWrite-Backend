@@ -1,0 +1,34 @@
+/* styleHs.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+header {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+main {
+  padding: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

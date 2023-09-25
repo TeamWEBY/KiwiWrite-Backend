@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: border-box;
+} 
+
+.content {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+} 
+
+.keywordTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  font-size: 30px;
+  padding-bottom: 30px;
+}
+
+.keywordContent {
+  border: 1px solid black;
+  width: 100%;
+  height: 800px;
+  padding-top: 30px;
+  padding-left: 20px;
+  font-size: 25px;
+}
+
+li {
+  height: 50px;
+  padding-left: 10px;
+}
+
+.keywordContent li a {
+  text-decoration: none;
+  color: black;
+}
+
+.keywordContent li {
+  list-style: circle; /* or list-style: square; */
+}

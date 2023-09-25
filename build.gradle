@@ -36,6 +36,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//Test를 위한 Mockito 의존성 추가
 	testImplementation 'org.mockito:mockito-core:5.4.0'
+	//passwd를 위한 spring security 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//html 테스팅을 위함 Thymeleaf 추가
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 }
 
 tasks.named('test') {

@@ -3,82 +3,64 @@ package weby.kiwi.domain.collection.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import weby.kiwi.domain.collection.dto.CollectionEntityUpdateDto;
-import weby.kiwi.domain.word.Word;
+import lombok.Setter;
+import weby.kiwi.domain.word.entity.Word;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
+@Table(name = "collections")
 @Getter
+@Setter
 @NoArgsConstructor
-@Entity(name = "Collection")
 public class Collection {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "col_id", nullable = false)
+    private Long collectionId;
 
     @Column(name = "user_id", nullable = false)
-    private int user_id; //GeneratedValue로 pk생성 옵션
-    @MapsId("user_id") //fk를 pk로
+    private Long userId;
 
-    @OneToMany(mappedBy = "Collection")//한개의 collection에는  @GeneratedValue여러개의 단어가 연결될 수 있음
-    @Column(nullable = true)
-    private List<Word> word = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)  // 다대일 관계 설정
+    @JoinColumn(name = "word_id",nullable=false)       // 외래 키 매핑
+    private Word word;  // Word 엔티티와의 관계
 
-    @Column(nullable = true)
-    private int year;
-
-    @Column(nullable = true)
+    @Column(name = "month", nullable = false)
     private int month;
 
-    @Column(nullable = true)
-    private int word_cnt;
-
     @Builder
-    public Collection(int user_id, List<Word> word, int year, int month, int word_cnt) {
-        this.user_id = user_id;
+    public Collection(Long collectionId, Long userId,  Word word, int month) {
+        this.collectionId = collectionId;
+        this.userId = userId;
         this.word = word;
-        this.year = year;
         this.month = month;
-        this.word_cnt = word_cnt;
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.year = 0;
-        this.month = 0;
-        this.word_cnt = 0;
+    public Long getCollectionId() {
+        return collectionId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public List<Word> getWord() {
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Word getWord() {
         return word;
     }
 
-    public int getYear() {
-        return year;
+    public void setWord(Word word) {
+        this.word = word;
     }
 
     public int getMonth() {
         return month;
     }
 
-    public void updateCollection(CollectionEntityUpdateDto dto) {
-        this.word.clear();
-        this.word.addAll(dto.getWordList());
-        this.year = dto.getYear();
-        this.month = dto.getMonth();
-    }
-
-    public void setYearMonth(int year, int month) {
-        this.year = year;
+    public void setMonth(int month) {
         this.month = month;
-    }
-
-    public void addWordCnt(){
-        this.word_cnt++;
     }
 }

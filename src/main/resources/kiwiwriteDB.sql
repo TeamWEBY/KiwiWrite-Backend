@@ -17,7 +17,8 @@ CREATE TABLE users (
 CREATE TABLE words (
                        word_id INT AUTO_INCREMENT PRIMARY KEY,
                        word VARCHAR(50) NOT NULL,
-                       word_month INT NOT NULL
+                       month INT NOT NULL,
+                       day INT NOT NULL
 );
 
 -- 3. notes table

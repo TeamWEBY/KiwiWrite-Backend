@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>틀</title>
+  <link href="../static/html3.css" rel="stylesheet">
+  <script src="./html3.js" defer></script>
+</head>
+<body>  
+  <div class="container">
+    <div class="MENU">
+      <!-- a태그로 할지 div태그로 할 지 고민... 일단 a로 하긴 함 -->
+      <li>
+        <a href="#" class="logo">로고</a>
+      </li>
+      <li>
+        <a href="#" class="menu">글쓰기</a>
+      </li>
+      <li>
+        <a href="#" class="menu">탐색하기</a>
+      </li>
+      <li>
+        <a href="#" class="menu" onclick="changeIframeSource('./Profile.html')">이웃들</a>
+      </li>
+      <li>
+        <a href="#" class="menu" onclick="changeIframeSource('./myProfile.html')">내 프로필</a>
+      </li>
+    </div>
+    <div class="content">
+      <iframe id="iframeContent" src="./management.html"></iframe>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+}
+
+#menu {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+#logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+#menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu li {
+  margin-bottom: 10px;
+}
+
+#menu li a {
+  text-decoration: none;
+  color: black;
+}
+
+#content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#centered-content {
+  text-align: center;
+}
+
+#keyword {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#write-button, #save-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-image: url("brush-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#editor-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#post-title {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#post-content {
+  width: 300px;
+  padding: 10px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+#post-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 600px; /* 가로 크기를 2배로 확장 */
+}
+
+.post-item {
+  position: relative;
+  padding: 20px;
+}
+
+.post-item::before {
+  content: attr(data-time);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: #999;
+}
+

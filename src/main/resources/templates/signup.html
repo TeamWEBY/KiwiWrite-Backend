@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>KiwiWrite - 회원가입</title>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/signup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>KiwiWrite - 회원가입</h1>
+    </header>
+    <main>
+      <form>
+        <div class="input-container">
+          <input type="email" id="email" name="email" required placeholder="이메일">
+          <button type="button" id="checkEmailButton">중복확인</button>
+        </div>
+        <div class="input-container">
+          <input type="password" id="password" name="password" required placeholder="비밀번호">
+        </div>
+        <div class="input-container">
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="비밀번호 재입력">
+        </div>
+        <div class="input-container">
+          <input type="text" id="nickname" name="nickname" required placeholder="사용할 필명 입력">
+          <button type="button" id="checkNicknameButton">중복확인</button>
+        </div>
+        <div class="button-container">
+          <button type="submit">계정 만들기</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

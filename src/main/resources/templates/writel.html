@@ -1,0 +1,103 @@
+<!-- /*희서벗 글쓰기 코드 아이디어가 되게 좋은 것 같아서 일단은 제틀내에서 따라ㅐㅎ봣어용!ㅎㅎ!! 여기서 댓글기능이나 저만의 부가적인 기능은 다음주에 수정할 예정입니닷!!*/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>내 웹사이트</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <style>
+        /* 여기에 스타일을 추가할 수 있습니다. */
+       
+    </style>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <div id="logo">로고</div>
+            <ul>
+                <li><a href="#">글쓰기</a></li>
+                <li><a href="#">탐색하기</a></li>
+                <li><a href="#" onclick="goToNeighbors()">이웃들</a></li>
+                <li><a href="#">내 프로필</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="centered-content">
+                <!-- 가운데에 배치할 내용 추가 -->
+                <div class="keywordSection">
+                    오늘의 키워드:
+                    <span class="keyword">00000000</span>
+                </div>
+
+                <div class="writingSection">
+                    <div class="titleSection">
+                        <div class="titleBorder">
+                            <input type="text" class="titleInput" placeholder="제목">
+                        </div>
+                    </div>
+
+                    <div class="contentSection">
+                        <div class="contentBorder">
+                            <textarea class="contentInput" placeholder="본문 내용"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="publishSection">
+                        <button class="publishButton">공개</button>
+                        <div class="charCountBox">
+                            <span class="characterCount">0/1000</span>
+                        </div>
+                    </div>
+
+                    <button class="submitBtn">작성 완료</button>
+                </div>
+
+                <div class="completionPage" style="display: none;">
+                    <div class="completionText">
+                        오늘의 키워드로 한번 글 작성을 완료 했어요!<br>
+                        하나 더 쓰고 싶나요?
+                    </div>
+                    <button class="writeMoreButton">하나 더 쓰기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript 코드는 그대로 유지됩니다.
+        const contentInput = document.querySelector('.contentInput');
+        const characterCount = document.querySelector('.characterCount');
+        const publishButton = document.querySelector('.publishButton');
+        const submitButton = document.querySelector('.submitBtn');
+        const completionPage = document.querySelector('.completionPage');
+        const writeMoreButton = document.querySelector('.writeMoreButton');
+
+        contentInput.addEventListener('input', function() {
+            const content = this.value;
+            const count = content.length;
+            characterCount.textContent = count + '/1000';
+        });
+
+        publishButton.addEventListener('click', function() {
+            if (this.textContent === '공개') {
+                this.textContent = '비공개';
+            } else {
+                this.textContent = '공개';
+            }
+        });
+
+        submitButton.addEventListener('click', function() {
+            document.querySelector('.writingSection').style.display = 'none';
+            completionPage.style.display = 'block';
+        });
+
+        writeMoreButton.addEventListener('click', function() {
+            document.querySelector('.writingSection').style.display = 'block';
+            completionPage.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

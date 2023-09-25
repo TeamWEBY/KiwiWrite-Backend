@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>내 웹사이트</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="script.js"></script>
+    <style>
+        /* 이전에 있던 스타일들은 그대로 두고, 추가한 스타일을 아래에 작성합니다 */
+
+        /* 이웃목록 글씨 오른쪽 옆에 "필명 검색" 추가 */
+        #title {
+            font-size: 18px;
+            font-weight: normal;
+            display: flex;
+            justify-content: space-between; /* 이웃목록 글씨와 "필명 검색" 사이의 간격을 벌리기 위해 사용합니다 */
+        }
+
+        #nickname-search {
+            font-size: 18px;
+            color: black;
+            font-weight:normal;
+        }
+
+        #keyword {
+            font-size: 28px; /* 크기를 늘림 */
+            font-weight: bold; /* 이웃들의 글과 같은 굵기로 설정 */
+            margin-bottom: 90px; /* 위로 올림 */
+        }
+    </style>
+  
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <div id="logo">로고</div>
+            <ul>
+                <li><a href="#">글쓰기</a></li>
+                <li><a href="#">탐색하기</a></li>
+                <li><a href="#" onclick="goToNeighbors()">이웃들</a></li>
+                <li><a href="#">내 프로필</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="centered-content">
+                <div id="keyword">이웃들의 글</div>
+                <h1 id="title">이웃목록<span id="nickname-search">필명 검색</span></h1>
+                <div id="editor-container">
+                    <input type="text" id="post-title" placeholder="제목">
+                    <textarea id="post-content" placeholder="내용"></textarea>
+                    <button id="save-button">작성</button>
+                </div>
+                <button id="write-button" onclick="toggleEditor()">글쓰기</button>
+                <ul id="post-list"></ul>
+            
+            </div>
+        </div>
+    </div>
+</body>
+</html>

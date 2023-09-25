@@ -38,7 +38,7 @@ public class Word {
     private List<Note> secondWordNotes = new ArrayList<>();
 
     public Word(int month, int day, String wordName) {
-        if(!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || wordName == null) {
+        if (!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31) || wordName == null) {
             throw new IllegalArgumentException("필수 파라미터 입력 오류!");
         }
         setMonth(month);
